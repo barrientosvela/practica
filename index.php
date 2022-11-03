@@ -12,6 +12,7 @@
     <?php
     // Declara la variable $errores para poder mostrar los errores o validar el envio si esta vacia
     $errores = "";
+    $extras = null;
     // Obtiene los valores del formulario
     $tipo = $_REQUEST['tipo'];
     $zona = $_REQUEST['zona'];
@@ -19,7 +20,9 @@
     $dormitorios = $_REQUEST['dormitorios'];
     $precio = $_REQUEST['precio'];
     $tamano = $_REQUEST['metros'];
-    $extras = isset($_REQUEST['extras']);
+    copy($_FILES['foto']['tmp_name'],$_FILES['foto']['name']);
+    $foto = $_FILES['foto']['name'];
+    $extras = $_REQUEST['extras'];
     $observaciones = $_REQUEST['observaciones'];
 
     // Comprueba valores correctos
@@ -32,6 +35,7 @@
     if (!is_numeric($tamano)) {
         $errores = $errores . "<li>El tamaño debe ser un valor numérico\n</li>";
     }
+    // Si hay errores los muestra sino muestra los datos introducidos
     if ($errores == "") {
         print("<p>Estos son los datos introducidos:</p>\n");
         print("<ul>\n");
@@ -40,11 +44,16 @@
         print("   <li>Dirección: $direccion\n");
         print("   <li>Número de dormitorios: $dormitorios\n");
         print("   <li>Precio: $precio &euro;\n");
-        print("   <li>Tamaño: $tamano m<sup>2</sup>\n");
-        print("   <li>Extras: $extras");
+        print("   <li>Tamaño: $tamano m<sup>2</sup>\n");        
+        print("   <li>Extras: ");
+        foreach ($extras as $extra)
+        print($extra . " ");
+
+     print("\n");
         print("   <li>Observaciones: $observaciones\n");
+        print("   <li><img src=\"$foto\">");
         print("</ul>\n");
-        print("<p><a href='index.html'>Insertar otra vivienda</a></p>");
+        print("<p><a href='principal.html'>Insertar otra vivienda</a></p>");
     } else {
         print("<p>No se ha podido realizar la inserción debido a los siguientes errores:</p>\n");
         print("<ul>");

@@ -10,6 +10,11 @@ p span{
     padding-left: 20px;
     font-weight: bold;
 }
+img{
+    width: 200px;
+    height: 200px;
+    float: left;
+}
 /*
 .campo{
     clear: left;
