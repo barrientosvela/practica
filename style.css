@@ -10,8 +10,8 @@ p span{
     padding-left: 20px;
     font-weight: bold;
 }
-img{
-    width: 200px;
+.foto{
+    width: 20px;
     height: 200px;
     float: left;
 }
