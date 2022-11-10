@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar vivienda</title>
+</head>
+
+<body>
+    <form action="consultaBBDD.php" method="post">
+        <span>Tipo:</span>
+        <select class="campo" name="tip\">
+            <option value="Piso">Piso</option>
+            <option value="Adosado">Adosado</option>
+            <option value="Chalet">Chalet</option>
+            <option value="Casa">Casa</option>
+        </select>
+        <span>Zona:</span>
+        <select class="campo" name="zona">
+            <option value="Centro">Centro</option>
+            <option value="Nervion">Nervión</option>
+            <option value="Triana">Triana</option>
+            <option value="Aljarafe">Aljarafe</option>
+            <option value="Macarena">Macarena</option>
+        </select>
+        <input type="submit" value="Buscar">
+    </form>
+
+</body>
+
+</html>

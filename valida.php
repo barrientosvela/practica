@@ -11,8 +11,8 @@
 <body>
     <?php
     // Declara la variable $errores para poder mostrar los errores o validar el envio si esta vacia
-    $errores = "";
-    $extrasCadena = "";    
+    $errores = $rutaFoto = $extrasCadena = "";
+
     // Obtiene los valores del formulario
     $tipo = $_REQUEST['tipo'];
     $zona = $_REQUEST['zona'];
@@ -21,14 +21,15 @@
     $precio = $_REQUEST['precio'];
     $tamano = $_REQUEST['metros'];
     if (!empty($_FILES['foto']['tmp_name']) && $_FILES['foto']['size'] <= 100000) {
-        copy($_FILES['foto']['tmp_name'],$_FILES['foto']['name']);
         $foto = $_FILES['foto']['name'];
-        $rutaFoto = "C:/xampp/htdocs/practica/images/".$foto;
+        $rutaFoto = "images/".$foto;
+        move_uploaded_file($_FILES['foto']['tmp_name'],$rutaFoto);
     }
     if (!empty($_REQUEST['extras'])) {
         if (is_array($_REQUEST['extras']))
         $extras = $_REQUEST['extras'];
-        //oreach 
+        foreach ($extras as $extra)
+        $extrasCadena .= $extra . " "; 
     }
     $observaciones = $_REQUEST['observaciones'];
 
@@ -47,6 +48,7 @@
     }
     // Si hay errores los muestra sino muestra los datos introducidos
     if ($errores == "") {
+        print("<p>Vivienda introducida correctamente</p>");
         print("<p>Estos son los datos introducidos:</p>\n");
         print("<ul>\n");
         print("   <li>Tipo: $tipo\n");
@@ -57,10 +59,7 @@
         print("   <li>Tamaño: $tamano m<sup>2</sup>\n");
         print("   <li>Extras: ");
         if (!empty($extras)){
-            foreach ($extras as $extra)
-                print($extra . " ");
-    
-            print("\n");
+            print($extrasCadena);
         }
         print("   <li>Observaciones: $observaciones\n");
         if (!empty($_FILES['foto']['tmp_name'])) {
@@ -69,14 +68,14 @@
         print("</ul>\n");
         $conect = mysqli_connect("localhost", "root", "", "viviendas");
         if (mysqli_connect_errno()) {
-            echo "Fallo" . mysqli_connect_error();
+            echo "Fallo al conectar con la base de datos" . mysqli_connect_error();
             exit;
         } else {
             mysqli_query($conect, "INSERT INTO tabla_viviendas (id, tipo, zona, direccion, dormitorios, precio, tamano, extras, foto, observaciones)
-            VALUES ('','$tipo', '$zona', '$direccion', '$dormitorios','$precio','$tamano','$extras','$rutaFoto','$observaciones')");
+            VALUES ('','$tipo', '$zona', '$direccion', '$dormitorios','$precio','$tamano','$extrasCadena','$rutaFoto','$observaciones')");
         }
         print("<p><a href='principal.html'><button>Insertar otra vivienda</button></a></p>");
-        print("<p><a href='consulta.php'><button>Buscar vivienda</button></a></p>");
+        print("<p><a href='consulta.html'><button>Buscar vivienda</button></a></p>");
     } else {
         print("<p>No se ha podido realizar la inserción debido a los siguientes errores:</p>\n");
         print("<ul>");
