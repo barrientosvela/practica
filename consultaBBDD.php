@@ -21,7 +21,7 @@
     ?>
     <table border="1">
         <tr>
-            <td>tipo</td>
+            <th>tipo</t>
             <td>zona</td>
             <td>direccion</td>
             <td>dormitorios</td>
@@ -43,9 +43,13 @@
                 <td><?php echo $arrayCunsulta['tamano'] ?> m<sup>2</sup></td>
                 <td><?php echo $arrayCunsulta['extras'] ?></td>
                 <?php
-                if($arrayCunsulta['foto']!==""){
+                if ($arrayCunsulta['foto'] !== "") {
                 ?>
-                    <td><?php echo "<a href=".$arrayCunsulta['foto']." />Foto" ?> </td>
+                    <td><?php echo "<a href=" . $arrayCunsulta['foto'] . " />Foto" ?> </td>
+                <?php
+                } else {
+                ?>
+                    <td></td>
                 <?php
                 }
                 ?>
