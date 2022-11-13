@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    
+
     <form action="consultaBBDD.php" method="post">
         <span>Tipo:</span>
-        <select class="campo" name="tip\">
+        <select class="campo" name="tipo">
             <option value="Piso">Piso</option>
             <option value="Adosado">Adosado</option>
             <option value="Chalet">Chalet</option>
@@ -26,6 +26,15 @@
             <option value="Aljarafe">Aljarafe</option>
             <option value="Macarena">Macarena</option>
         </select>
+        <span>Número de dormitorios:</span>
+        <input class="campo" type="radio" name="dormitorios" value="1" required>1</input>
+        <input class="campo" type="radio" name="dormitorios" value="2">2</input>
+        <input class="campo" type="radio" name="dormitorios" value="3">3</input>
+        <input class="campo" type="radio" name="dormitorios" value="4">4</input>
+        <input class="campo" type="radio" name="dormitorios" value="5">5</input>
+        <span>Precio máximo:</span>
+        <input class="campo" type="text" name="precio"> &euro;</input>
+
         <input type="submit" value="Buscar">
     </form>
 

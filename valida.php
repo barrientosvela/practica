@@ -25,6 +25,7 @@
         $rutaFoto = "images/".$foto;
         move_uploaded_file($_FILES['foto']['tmp_name'],$rutaFoto);
     }
+    
     if (!empty($_REQUEST['extras'])) {
         if (is_array($_REQUEST['extras']))
         $extras = $_REQUEST['extras'];
@@ -63,7 +64,7 @@
         }
         print("   <li>Observaciones: $observaciones\n");
         if (!empty($_FILES['foto']['tmp_name'])) {
-            print("   <li><img src=\"$foto\">");
+            print("   <li><img src='images/".$foto."' height=\"10%\" width=\"10%\" />");
         }
         print("</ul>\n");
         $conect = mysqli_connect("localhost", "root", "", "viviendas");
@@ -75,7 +76,7 @@
             VALUES ('','$tipo', '$zona', '$direccion', '$dormitorios','$precio','$tamano','$extrasCadena','$rutaFoto','$observaciones')");
         }
         print("<p><a href='principal.html'><button>Insertar otra vivienda</button></a></p>");
-        print("<p><a href='consulta.html'><button>Buscar vivienda</button></a></p>");
+        print("<p><a href='consulta.php'><button>Buscar vivienda</button></a></p>");
     } else {
         print("<p>No se ha podido realizar la inserción debido a los siguientes errores:</p>\n");
         print("<ul>");
