@@ -1,3 +1,6 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 h1 {
     font-weight: bold;
     color: #0066CC;
@@ -10,15 +13,4 @@ p span{
     padding-left: 20px;
     font-weight: bold;
 }
-.foto{
-    width: 20px;
-    height: 200px;
-    float: left;
-}
-/*
-.campo{
-    clear: left;
-    padding-left: 20px;
-    margin-left: 80px;
-}
-*/
+
